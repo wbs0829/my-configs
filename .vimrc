@@ -102,6 +102,9 @@ nmap <leader>q <CTRL-w>z
 imap <leader>ji <><LEFT>
 imap <leader>ao {}<LEFT><CR><ESC>O
 
+nmap <leader>h :%!xxd<CR>
+nmap <leader>H :%!xxd -r<CR>
+
 "paste mode
 set pastetoggle=<leader>p "only for insert mode
 
@@ -165,6 +168,8 @@ Bundle 'terryma/vim-expand-region'
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'szw/vim-ctrlspace'
+Bundle 'rust-lang/rust.vim'
+Bundle 'phildawes/racer'
 
 filetype plugin indent on     " required!
 
@@ -346,7 +351,7 @@ nmap <Leader>r <Plug>(quickrun)
 let g:quickrun_config = {}
 let g:quickrun_config.cpp = {
             \ 'type': 'cpp/clang++',
-            \ 'cmdopt': '-std=c++1z'
+            \ 'cmdopt': '-std=c++1z -I ~/include'
             \}
 "[vim-quickrun]$
 
@@ -358,9 +363,16 @@ nmap <leader>sf :CtrlSF<CR>
 "[ctrlsf]$
 
 "[gundo](plugin)
-nmap <leader>h :GundoToggle<CR>
+nmap <leader>u :GundoToggle<CR>
 "[gundo]$
 
 "[vim-ctrlspace](plugin)
 nmap <leader><space> :CtrlSpace<CR>
+set hidden
 "[vim-ctrlspace]$
+
+"[racer](plugin)(efficiency)(autocomplete)
+set hidden
+let g:racer_cmd = "/home/amber/.vim/bundle/racer/target/release/racer"
+let $RUST_SRC_PATH="/home/amber/code/rust/rust/src"
+"[racer]$
