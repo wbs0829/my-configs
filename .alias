@@ -22,3 +22,5 @@ fi
 
 alias gtag='ctags -R; cscope-indexer -r'
 alias dtag='rm tags cscope.files cscope.out'
+
+alias cl='clear'

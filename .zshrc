@@ -46,7 +46,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git svn vi-mode autojump tmux pip cp)
-plugins=(git svn autojump tmux pip cp)
+plugins=(git svn autojump tmux pip cp systemd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,8 +79,6 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/code/shell
 PATH=$PATH:$HOME/code/python
 
-PATH=$PATH:$HOME/.cabal/bin
-
 # for powerline
 #PATH=$PATH:$HOME/.local/bin
 #if [[ -r ~/.local/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
@@ -89,6 +87,8 @@ PATH=$PATH:$HOME/.cabal/bin
 
 source $HOME/.alias
 source $HOME/.function
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #for cheat
 export CHEATCOLORS=true
