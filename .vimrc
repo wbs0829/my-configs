@@ -172,6 +172,7 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'phildawes/racer'
 Bundle "vim-scripts/fcitx.vim"
 Bundle "tmux-plugins/vim-tmux"
+Bundle "tpope/vim-obsession"
 
 filetype plugin indent on     " required!
 
@@ -387,3 +388,6 @@ set ttimeoutlen=10
 
 "[vim-tmux](plugin)
 "[vim-tmux]$
+
+"[vim-obsession](plugin)
+"[vim-obsession]$
