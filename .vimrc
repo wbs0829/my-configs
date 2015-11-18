@@ -171,6 +171,7 @@ Bundle 'szw/vim-ctrlspace'
 Bundle 'rust-lang/rust.vim'
 Bundle 'phildawes/racer'
 Bundle "vim-scripts/fcitx.vim"
+Bundle "tmux-plugins/vim-tmux"
 
 filetype plugin indent on     " required!
 
@@ -383,3 +384,6 @@ let $RUST_SRC_PATH="/home/amber/code/rust/rust/src"
 "[fcitx.vim](plugin)
 set ttimeoutlen=10
 "[fcitx.vim]$
+
+"[vim-tmux](plugin)
+"[vim-tmux]$
