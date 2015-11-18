@@ -170,6 +170,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'szw/vim-ctrlspace'
 Bundle 'rust-lang/rust.vim'
 Bundle 'phildawes/racer'
+Bundle "vim-scripts/fcitx.vim"
 
 filetype plugin indent on     " required!
 
@@ -378,3 +379,7 @@ set hidden
 let g:racer_cmd = "/home/amber/.vim/bundle/racer/target/release/racer"
 let $RUST_SRC_PATH="/home/amber/code/rust/rust/src"
 "[racer]$
+
+"[fcitx.vim](plugin)
+set ttimeoutlen=10
+"[fcitx.vim]$
