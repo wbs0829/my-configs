@@ -5,6 +5,8 @@ alias showgitproxy='git config --global core.gitProxy'
 alias zrc='vim ~/.zshrc'
 alias vrc='vim ~/.vimrc'
 
+alias cls='echo -en "\ec"'
+
 alias t2x='tmux show-buffer | xclip -selection clipboard'
 alias x2t='tmux set-buffer "$(xclip -o)"'
 

@@ -109,20 +109,20 @@ nmap <leader>H :%!xxd -r<CR>
 set pastetoggle=<leader>p "only for insert mode
 
 "cscope
-if has("cscope")
-  set csprg=/bin/cscope
-  set csto=0
-  set cst
-  set nocsverb
-  " add any database in current directory
-  if filereadable("cscope.out")
-      cs add cscope.out
-  " else add database pointed to by environment
-  elseif $CSCOPE_DB != ""
-      cs add $CSCOPE_DB
-  endif
-  set csverb
-endif
+"if has("cscope")
+  "set csprg=/bin/cscope
+  "set csto=0
+  "set cst
+  "set nocsverb
+   "add any database in current directory
+  "if filereadable("cscope.out")
+      "cs add cscope.out
+   "else add database pointed to by environment
+  "elseif $CSCOPE_DB != ""
+      "cs add $CSCOPE_DB
+  "endif
+  "set csverb
+"endif
 
 nmap <leader>gs :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>gg :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -173,6 +173,9 @@ Bundle 'phildawes/racer'
 Bundle "vim-scripts/fcitx.vim"
 Bundle "tmux-plugins/vim-tmux"
 Bundle "tpope/vim-obsession"
+Bundle "aceofall/gtags.vim"
+"Bundle "gdbmgr"
+"Bundle "Conque-GDB"
 
 filetype plugin indent on     " required!
 
@@ -219,6 +222,7 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_add_preview_to_completeopt = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_show_diagnostics_ui = 0
 " [YouCompleteMe]$
 
 " [RainbowParentheses](plugin)(color)
@@ -258,7 +262,6 @@ let g:indent_guides_auto_colors = 1
 " [vim-indent-guide]$
 
 " [vim-easymotion](plugin)(efficiency)
-"let g:EasyMotion_leader_key = '<Leader>'
 " [vim-easymotion]$
 
 " [nerdcommenter](plugin)(efficiency)
@@ -268,28 +271,6 @@ let g:indent_guides_auto_colors = 1
 " [delimitMate]$
 
 " [vim-surround](plugin)(efficiency)
-"let g:surround_no_mappingsg = 1
-"Normal mode
-"-----------
-"ds  - delete a surrounding
-"cs  - change a surrounding
-"ys  - add a surrounding
-"yS  - add a surrounding and place the surrounded text on a new line + indent it
-"yss - add a surrounding to the whole line
-"ySs - add a surrounding to the whole line, place it on a new line + indent it
-"ySS - same as ySs
-"
-"Visual mode
-"-----------
-"S   - in visual mode, add a surrounding
-"gS   - in visual mode, add a surrounding but place text on new line + indent it
-
-"Insert mode
-"-----------
-"<CTRL-s> - in insert mode, add a surrounding
-"<CTRL-s><CTRL-s> - in insert mode, add a new line + surrounding + indent
-"<CTRL-g>s - same as <CTRL-s>
-"<CTRL-g>S - same as <CTRL-s><CTRL-s>
 " [vim-surround]$
 
 " [ultisnips](plugin)(efficiency)
@@ -300,18 +281,12 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips","bundle/ultisnips/UltiSnips"]
 " [ultisnips]$
 
 " [vim-multiple-cursors](plugin)(efficiency)
-"let g:multi_cursor_use_default_mapping=0
-" Default mapping
-"let g:multi_cursor_next_key='<C-n>'
-"let g:multi_cursor_prev_key='<C-p>'
-"let g:multi_cursor_skip_key='<C-x>'
-"let g:multi_cursor_quit_key='<Esc>'
 " [vim-multiple-cursors]$
 
 " [syntastic](plugin)(syntax)
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 0
 let g:syntastic_cpp_include_dirs = ['/usr/include/']
 let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_check_header = 1
@@ -330,7 +305,7 @@ let g:airline_detect_modified=1
 let g:airline_detect_iminsert=1
 let g:airline_detect_paste=1
 let g:airline_inactive_collapse=1
-let g:airline_theme='murmur'
+"let g:airline_theme='murmur'
 "[vim-airline]$
 
 "[tagbar](plugin)
@@ -338,7 +313,6 @@ nmap <leader>tb :TagbarToggle<CR>
 "[tagbar]$
 
 "[TaskList](plugin)
-" TODO
 nmap <leader>td <Plug>TaskList
 "[TaskList]$
 
@@ -364,7 +338,8 @@ nmap <leader>j <Plug>(expand_region_shrink)
 "[vim-expand-region]$
 
 "[ctrlsf](plugin)(efficiency)
-nmap <leader>sf :CtrlSF<CR>
+nmap <leader>sf <Plug>CtrlSFPrompt
+vmap <leader>sf <Plug>CtrlSFVwordExec
 "[ctrlsf]$
 
 "[gundo](plugin)
@@ -390,4 +365,13 @@ set ttimeoutlen=10
 "[vim-tmux]$
 
 "[vim-obsession](plugin)
+" vim-airline support TODO
 "[vim-obsession]$
+
+"[gtags.vim](plugin)
+set cscopetag
+set cscopeprg='gtags-cscope'
+let GtagsCscope_Auto_Load = 1
+let CtagsCscope_Auto_Map = 1
+let GtagsCscope_Quiet = 1
+"[gtags.vim]$

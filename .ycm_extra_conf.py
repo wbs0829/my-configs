@@ -47,10 +47,9 @@ flags = [
 '-isystem',
 '/usr/local/include',
 '-isystem',
-'/usr/include/c++/5.1.0',
+'/usr/include/c++/'+os.popen("gcc --version").read().split()[2],
 '-isystem',
-# TODO: PROBLEM: using relative path
-'/home/amber/include',
+os.path.expanduser("~")+'/include',
 ]
 
 
