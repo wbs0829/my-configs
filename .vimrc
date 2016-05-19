@@ -333,8 +333,8 @@ let g:quickrun_config.cpp = {
 "[vim-quickrun]$
 
 "[vim-expand-region](plugin)(efficiency)
-nmap <leader>k <Plug>(expand_region_expand)
-nmap <leader>j <Plug>(expand_region_shrink)
+map <leader>k <Plug>(expand_region_expand)
+map <leader>j <Plug>(expand_region_shrink)
 "[vim-expand-region]$
 
 "[ctrlsf](plugin)(efficiency)
