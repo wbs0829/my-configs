@@ -521,5 +521,5 @@ let GtagsCscope_Quiet = 1
 
 let s:specific_config = $PWD . '/.specific.vim'
 if filereadable(s:specific_config)
-    source s:specific_config
+    exec "source ". s:specific_config
 endif
