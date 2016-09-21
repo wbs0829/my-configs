@@ -79,15 +79,58 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/code/shell
 PATH=$PATH:$HOME/code/python
 
-# for powerline
-#PATH=$PATH:$HOME/.local/bin
-#if [[ -r ~/.local/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-	#source ~/.local/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh
-#fi
+# alias
+alias enablegitproxy='git config --global core.gitProxy gitproxy.sh'
+alias disenablegitproxy='git config --global --unset core.gitProxy'
+alias showgitproxy='git config --global core.gitProxy'
 
-source $HOME/.alias
-source $HOME/.function
+alias zrc='vim ~/.zshrc'
+alias vrc='vim ~/.vimrc'
 
+alias cls='echo -en "\ec"'
+
+alias t2x='tmux show-buffer | xclip -selection clipboard'
+alias x2t='tmux set-buffer "$(xclip -o)"'
+
+if [ "$shellx" = "zshx" ]; then
+	alias -s c=vim
+	alias -s h=vim
+	alias -s cpp=vim
+	alias -s hpp=vim
+	alias -s md=vim
+	alias -s sh=vim
+	alias -s py=vim
+
+	alias -s conf=vim
+fi
+
+alias gtag='ctags -R; cscope-indexer -r'
+alias dtag='rm tags cscope.files cscope.out'
+
+alias cl='clear'
+
+# function
+function enableproxy()
+{
+    if [ x = x"$PROXY_PORT" ]; then
+        export http_proxy=http://127.0.0.1:1080/
+    else
+        export http_proxy=http://127.0.0.1:$PROXY_PORT/
+    fi
+	export https_proxy=$http_proxy
+	export HTTP_PROXY=$http_proxy
+	export HTTPS_PROXY=$HTTP_PROXY
+}
+
+function disableproxy()
+{
+	unset http_proxy
+	unset https_proxy
+	unset HTTP_PROXY
+	unset HTTPS_PROXY
+}
+
+# plugin
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
