@@ -374,12 +374,24 @@ autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 " [RainbowParentheses]$
 
+" [vim-indent-guide](plugin)(show)
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_auto_colors = 1
+" some configs in colorscheme
+" [vim-indent-guide]$
+
 " 配色方案
 " [molokai](colorscheme)
 " [solarized](colorscheme)
 " molokai: sublime 配色方案
-if &t_Co > 255
+if &t_Co > 255 && has_key(s:plugin_info, 'molokai')
 	colorscheme molokai
+    autocmd VimEnter * :hi IndentGuidesOdd  guibg=grey10 ctermbg=233
+    autocmd VimEnter * :hi IndentGuidesEven guibg=grey15 ctermbg=236
+    let g:indent_guides_auto_colors = 0
 else
 	colorscheme default
 end
@@ -390,17 +402,6 @@ let g:ctrlp_match_window_reversed = 0
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 let g:ctrlp_open_multiple_files = 'v'
 " [ctrlp]$
-
-" [vim-indent-guide](plugin)(show)
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-let g:indent_guides_auto_colors = 1
-" (color) for {molokai}
-"autocmd VimEnter * :hi IndentGuidesOdd  guibg=grey10 ctermbg=233
-"autocmd VimEnter * :hi IndentGuidesEven guibg=grey15 ctermbg=234
-" [vim-indent-guide]$
 
 " [vim-easymotion](plugin)(efficiency)
 " [vim-easymotion]$
