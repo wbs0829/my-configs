@@ -11,7 +11,7 @@
 " {}: dependence
 
 " plugin configures
-let s:vim_manager='vundle'
+let s:vim_manager='plug'
 
 if filereadable("/etc/arch-release")
     let s:manager='pacman'
@@ -27,6 +27,10 @@ let s:manager_info={
 \   'vundle': {
 \       'method': 'vim',
 \       'template': 'Bundle "_package_"'
+\   },
+\   'plug': {
+\       'method': 'vim',
+\       'template': '_package_'
 \   }
 \}
 
@@ -37,121 +41,169 @@ let s:plugin_info={
 \   },
 \   'a': {
 \       'vundle': 'a.vim',
+\       "plug": "Plug 'vim-scripts/a.vim'",
 \       'pacman': ['vim-a']
 \   },
 \   'fencview': {
-\       'vundle': 'mbbill/fencview'
+\       'vundle': 'mbbill/fencview',
+\       "plug": "Plug 'mbbill/fencview'"
 \   },
 \   'nerdtree': {
 \       'vundle': 'vim-scripts/The-NERD-tree',
+\       "plug": "Plug 'vim-scripts/The-NERD-tree'",
 \       'pacman': ['vim-nerdtree']
 \   },
 \   'vimcdoc': {
-\       'vundle': 'asins/vimcdoc'
+\       'vundle': 'asins/vimcdoc',
+\       "plug": "Plug 'asins/vimcdoc'"
 \   },
 \   'YouCompleteMe': {
 \       'vundle': 'Valloric/YouCompleteMe',
+\       "plug": "Plug 'Valloric/YouCompleteMe'",
 \       'pacman': ['vim-youcompleteme-core-git', 'vim-youcompleteme-git']
 \   },
 \   'rainbow_parentheses': {
-\       'vundle': 'kien/rainbow_parentheses.vim'
+\       'vundle': 'kien/rainbow_parentheses.vim',
+\       "plug": "Plug 'kien/rainbow_parentheses.vim'"
 \   },
 \   'molokai': {
 \       'vundle': 'tomasr/molokai',
+\       "plug": "Plug 'tomasr/molokai'",
 \       'pacman': ['vim-molokai', 'vim-molokai-git']
 \   },
 \   'ctrlp': {
 \       'vundle': 'kien/ctrlp.vim',
+\       "plug": "Plug 'kien/ctrlp.vim'",
 \       'pacman': ['vim-ctrlp']
 \   },
 \   'indent-guides': {
 \       'vundle': 'nathanaelkane/vim-indent-guides',
+\       "plug": "Plug 'nathanaelkane/vim-indent-guides'",
 \       'pacman': ['vim-indent-guides']
 \   },
 \   'easymotion': {
 \       'vundle': 'Lokaltog/vim-easymotion',
+\       "plug": "Plug 'Lokaltog/vim-easymotion'",
 \       'pacman': ['vim-easymotion', 'vim-easymotion-git']
 \   },
 \   'nerdcommenter': {
 \       'vundle': 'scrooloose/nerdcommenter',
+\       "plug": "Plug 'scrooloose/nerdcommenter'",
 \       'pacman': ['vim-nerdcommenter']
 \   },
 \   'delimitMate': {
 \       'vundle': 'Raimondi/delimitMate',
+\       "plug": "Plug 'Raimondi/delimitMate'",
 \       'pacman': ['vim-delimitmate']
 \   },
 \   'surround': {
 \       'vundle': 'tpope/vim-surround',
+\       "plug": "Plug 'tpope/vim-surround'",
 \       'pacman': ['vim-surround']
 \   },
 \   'ultisnips': {
 \       'vundle': 'SirVer/ultisnips',
+\       "plug": "Plug 'SirVer/ultisnips'",
 \       'pacman': ['vim-ultisnips']
 \   },
 \   'multiple-cursors': {
-\       'vundle': 'terryma/vim-multiple-cursors'
+\       'vundle': 'terryma/vim-multiple-cursors',
+\       "plug": "Plug 'terryma/vim-multiple-cursors'"
 \   },
 \   'syntastic': {
 \       'vundle': 'scrooloose/syntastic',
+\       "plug": "Plug 'scrooloose/syntastic'",
 \       'pacman': ['vim-syntastic', 'vim-syntastic-git', 'vim-syntastic-sync-git']
 \   },
 \   'airline': {
 \       'vundle': 'bling/vim-airline',
+\       "plug": "Plug 'bling/vim-airline'",
 \       'pacman': ['vim-airline', 'vim-airline-git']
 \   },
 \   'tagbar': {
 \       'vundle': 'majutsushi/tagbar',
+\       "plug": "Plug 'majutsushi/tagbar'",
 \       'pacman': ['vim-tagbar']
 \   },
 \   'tasklist': {
 \       'vundle': 'vim-scripts/TaskList.vim',
+\       "plug": "Plug 'vim-scripts/TaskList.vim'",
 \       'pacman': ['vim-taglist']
 \   },
 \   'easy-align': {
-\       'vundle': 'junegunn/vim-easy-align'
+\       'vundle': 'junegunn/vim-easy-align',
+\       "plug": "Plug 'junegunn/vim-easy-align'"
 \   },
 \   'signature': {
-\       'vundle': 'kshenoy/vim-signature'
+\       'vundle': 'kshenoy/vim-signature',
+\       "plug": "Plug 'kshenoy/vim-signature'"
 \   },
 \   'quickrun': {
-\       'vundle': 'thinca/vim-quickrun'
+\       'vundle': 'thinca/vim-quickrun',
+\       "plug": "Plug 'thinca/vim-quickrun'"
 \   },
 \   'expand-region': {
-\       'vundle': 'terryma/vim-expand-region'
+\       'vundle': 'terryma/vim-expand-region',
+\       "plug": "Plug 'terryma/vim-expand-region'"
 \   },
 \   'ctrlsf': {
-\       'vundle': 'dyng/ctrlsf.vim'
+\       'vundle': 'dyng/ctrlsf.vim',
+\       "plug": "Plug 'dyng/ctrlsf.vim'"
 \   },
 \   'gundo': {
 \       'vundle': 'sjl/gundo.vim',
+\       "plug": "Plug 'sjl/gundo.vim'",
 \       'pacman': ['vim-gundo']
 \   },
 \   'ctrlspace': {
-\       'vundle': 'szw/vim-ctrlspace'
+\       'vundle': 'szw/vim-ctrlspace',
+\       "plug": "Plug 'szw/vim-ctrlspace'"
 \   },
 \   'rust': {
 \       'vundle': 'rust-lang/rust.vim',
+\       "plug": "Plug 'rust-lang/rust.vim', { 'for': 'rust' }",
 \       'pacman': ['vim-rust-git']
 \   },
 \   'racer': {
-\       'vundle': 'phildawes/racer'
+\       'vundle': 'phildawes/racer',
+\       "plug": "Plug 'phildawes/racer', { 'for': 'rust' }"
 \   },
 \   'fcitx': {
 \       'vundle': 'vim-scripts/fcitx.vim',
+\       "plug": "Plug 'vim-scripts/fcitx.vim'",
 \       'pacman': ['vim-fcitx']
 \   },
 \   'tmux': {
-\       'vundle': 'tmux-plugins/vim-tmux'
+\       'vundle': 'tmux-plugins/vim-tmux',
+\       "plug": "Plug 'tmux-plugins/vim-tmux'"
 \   },
 \   'obsession': {
-\       'vundle': 'tpope/vim-obsession'
+\       'vundle': 'tpope/vim-obsession',
+\       "plug": "Plug 'tpope/vim-obsession'"
 \   },
 \   'gtags': {
-\       'vundle': 'aceofall/gtags.vim'
+\       'vundle': 'aceofall/gtags.vim',
+\       "plug": "Plug 'aceofall/gtags.vim', { 'for': ['c', 'cpp'] }"
 \   },
 \   'localrc': {
-\       'vundle': 'thinca/vim-localrc'
-\   }
+\       'vundle': 'thinca/vim-localrc',
+\       "plug": "Plug 'thinca/vim-localrc'"
+\   },
+\   'superman': {
+\       'vundle': 'jez/vim-superman',
+\       "plug": "Plug 'jez/vim-superman'"
+\   },
+\   'plug': {
+\   },
+\   'vimtex': {
+\       'vundle': 'lervag/vimtex',
+\       "plug": "Plug 'lervag/vimtex'"
+\   },
+\   'ack': {
+\       'vundle': 'mileszs/ack.vim',
+\       "plug": "Plug 'mileszs/ack.vim'",
+\       'pacman': ['vim-ack']
+\   },
 \}
 
 " global setting
@@ -305,23 +357,35 @@ endfunction
 " [Vundle](plugin)
 " 插件管理插件
 " 插件设置应在此之后
-set nocompatible              " be iMproved
-filetype off                  " required!
-if s:get_manager('vundle')=='vundle'
-    set rtp+=~/.vim/bundle/vundle/
+if s:vim_manager=='vundle'
+    set nocompatible              " be iMproved
+    filetype off                  " required!
+    if s:get_manager('vundle')=='vundle'
+        set rtp+=~/.vim/bundle/vundle/
+    endif
+    call vundle#rc()
 endif
-call vundle#rc()
 
-" 让vundle管理未被系统包管理器管理的插件
+" [vim-plug](plugin)
+" 插件管理插件
+if s:vim_manager=='plug'
+    call plug#begin('~/.vim/plugged')
+endif
+
+" 让vundle/vim-plug管理未被系统包管理器管理的插件
 for plug in keys(s:plugin_info)
     let mgr=s:get_manager(plug)
-    if s:manager_info[mgr].method=='vim'
+    if s:manager_info[mgr].method=='vim' && has_key(s:plugin_info[plug], mgr)
         let cmd=substitute(s:manager_info[mgr].template, '\<_package_\>', s:plugin_info[plug][mgr], '')
         execute(cmd)
     endif
 endfor
 
-filetype plugin indent on     " required!
+if s:vim_manager=='vundle'
+    filetype plugin indent on     " required!
+elseif s:vim_manager=='plug'
+    call plug#end()
+endif
 
 " [Vundle]$
 
@@ -524,3 +588,7 @@ let s:specific_config = $PWD . '/.specific.vim'
 if filereadable(s:specific_config)
     exec "source ". s:specific_config
 endif
+
+"[vim-ack]{plugin}
+let g:ackprg = 'ag --vimgrep'
+"[vim-ack]$

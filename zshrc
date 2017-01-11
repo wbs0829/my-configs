@@ -137,6 +137,16 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 #for cheat
 export CHEATCOLORS=true
 
+# superman: show man in vim
+vman() {
+  vim -c "SuperMan $*"
+
+  if [ "$?" != "0" ]; then
+    echo "No manual entry for $*"
+  fi
+}
+compdef vman="man"
+
 # GREP_OPTIONS is deprecated
 alias grep="/usr/bin/grep $GREP_OPTIONS"
 unset GREP_OPTIONS
