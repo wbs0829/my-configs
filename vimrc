@@ -1,218 +1,21 @@
 "########################################
-" File: .vimrc
 " Author: Amber Wang
-" Version: 2.0
 " Email: wbs.y829@gmail.com
-" Date: 2016-09-20
 "########################################
 
-" []: script
-" (): type
-" {}: dependence
+" []: 脚本
+" (): 类型：插件、主题等
+" {}: 依赖
 
-" plugin configures
-let s:vim_manager='plug'
-
-if filereadable("/etc/arch-release")
-    let s:manager='pacman'
-else
-    let s:manager=s:vim_manager
-endif
-
-let s:manager_info={
-\   'pacman': {
-\       'method': 'shell',
-\       'template': 'pacman -Qi _package_'
-\   },
-\   'vundle': {
-\       'method': 'vim',
-\       'template': 'Bundle "_package_"'
-\   },
-\   'plug': {
-\       'method': 'vim',
-\       'template': '_package_'
-\   }
-\}
-
-let s:plugin_info={
-\   'vundle': {
-\       'vundle': 'gmarik/vundle',
-\       'pacman': ['vundle', 'vundle-git']
-\   },
-\   'a': {
-\       'vundle': 'a.vim',
-\       "plug": "Plug 'vim-scripts/a.vim'",
-\       'pacman': ['vim-a']
-\   },
-\   'fencview': {
-\       'vundle': 'mbbill/fencview',
-\       "plug": "Plug 'mbbill/fencview'"
-\   },
-\   'nerdtree': {
-\       'vundle': 'vim-scripts/The-NERD-tree',
-\       "plug": "Plug 'vim-scripts/The-NERD-tree'",
-\       'pacman': ['vim-nerdtree']
-\   },
-\   'vimcdoc': {
-\       'vundle': 'asins/vimcdoc',
-\       "plug": "Plug 'asins/vimcdoc'"
-\   },
-\   'YouCompleteMe': {
-\       'vundle': 'Valloric/YouCompleteMe',
-\       "plug": "Plug 'Valloric/YouCompleteMe'",
-\       'pacman': ['vim-youcompleteme-core-git', 'vim-youcompleteme-git']
-\   },
-\   'rainbow_parentheses': {
-\       'vundle': 'kien/rainbow_parentheses.vim',
-\       "plug": "Plug 'kien/rainbow_parentheses.vim'"
-\   },
-\   'molokai': {
-\       'vundle': 'tomasr/molokai',
-\       "plug": "Plug 'tomasr/molokai'",
-\       'pacman': ['vim-molokai', 'vim-molokai-git']
-\   },
-\   'ctrlp': {
-\       'vundle': 'kien/ctrlp.vim',
-\       "plug": "Plug 'kien/ctrlp.vim'",
-\       'pacman': ['vim-ctrlp']
-\   },
-\   'indent-guides': {
-\       'vundle': 'nathanaelkane/vim-indent-guides',
-\       "plug": "Plug 'nathanaelkane/vim-indent-guides'",
-\       'pacman': ['vim-indent-guides']
-\   },
-\   'easymotion': {
-\       'vundle': 'Lokaltog/vim-easymotion',
-\       "plug": "Plug 'Lokaltog/vim-easymotion'",
-\       'pacman': ['vim-easymotion', 'vim-easymotion-git']
-\   },
-\   'nerdcommenter': {
-\       'vundle': 'scrooloose/nerdcommenter',
-\       "plug": "Plug 'scrooloose/nerdcommenter'",
-\       'pacman': ['vim-nerdcommenter']
-\   },
-\   'delimitMate': {
-\       'vundle': 'Raimondi/delimitMate',
-\       "plug": "Plug 'Raimondi/delimitMate'",
-\       'pacman': ['vim-delimitmate']
-\   },
-\   'surround': {
-\       'vundle': 'tpope/vim-surround',
-\       "plug": "Plug 'tpope/vim-surround'",
-\       'pacman': ['vim-surround']
-\   },
-\   'ultisnips': {
-\       'vundle': 'SirVer/ultisnips',
-\       "plug": "Plug 'SirVer/ultisnips'",
-\       'pacman': ['vim-ultisnips']
-\   },
-\   'multiple-cursors': {
-\       'vundle': 'terryma/vim-multiple-cursors',
-\       "plug": "Plug 'terryma/vim-multiple-cursors'"
-\   },
-\   'syntastic': {
-\       'vundle': 'scrooloose/syntastic',
-\       "plug": "Plug 'scrooloose/syntastic'",
-\       'pacman': ['vim-syntastic', 'vim-syntastic-git', 'vim-syntastic-sync-git']
-\   },
-\   'airline': {
-\       'vundle': 'bling/vim-airline',
-\       "plug": "Plug 'bling/vim-airline'",
-\       'pacman': ['vim-airline', 'vim-airline-git']
-\   },
-\   'tagbar': {
-\       'vundle': 'majutsushi/tagbar',
-\       "plug": "Plug 'majutsushi/tagbar'",
-\       'pacman': ['vim-tagbar']
-\   },
-\   'tasklist': {
-\       'vundle': 'vim-scripts/TaskList.vim',
-\       "plug": "Plug 'vim-scripts/TaskList.vim'",
-\       'pacman': ['vim-taglist']
-\   },
-\   'easy-align': {
-\       'vundle': 'junegunn/vim-easy-align',
-\       "plug": "Plug 'junegunn/vim-easy-align'"
-\   },
-\   'signature': {
-\       'vundle': 'kshenoy/vim-signature',
-\       "plug": "Plug 'kshenoy/vim-signature'"
-\   },
-\   'quickrun': {
-\       'vundle': 'thinca/vim-quickrun',
-\       "plug": "Plug 'thinca/vim-quickrun'"
-\   },
-\   'expand-region': {
-\       'vundle': 'terryma/vim-expand-region',
-\       "plug": "Plug 'terryma/vim-expand-region'"
-\   },
-\   'ctrlsf': {
-\       'vundle': 'dyng/ctrlsf.vim',
-\       "plug": "Plug 'dyng/ctrlsf.vim'"
-\   },
-\   'gundo': {
-\       'vundle': 'sjl/gundo.vim',
-\       "plug": "Plug 'sjl/gundo.vim'",
-\       'pacman': ['vim-gundo']
-\   },
-\   'ctrlspace': {
-\       'vundle': 'szw/vim-ctrlspace',
-\       "plug": "Plug 'szw/vim-ctrlspace'"
-\   },
-\   'rust': {
-\       'vundle': 'rust-lang/rust.vim',
-\       "plug": "Plug 'rust-lang/rust.vim', { 'for': 'rust' }",
-\       'pacman': ['vim-rust-git']
-\   },
-\   'racer': {
-\       'vundle': 'phildawes/racer',
-\       "plug": "Plug 'phildawes/racer', { 'for': 'rust' }"
-\   },
-\   'fcitx': {
-\       'vundle': 'vim-scripts/fcitx.vim',
-\       "plug": "Plug 'vim-scripts/fcitx.vim'",
-\       'pacman': ['vim-fcitx']
-\   },
-\   'tmux': {
-\       'vundle': 'tmux-plugins/vim-tmux',
-\       "plug": "Plug 'tmux-plugins/vim-tmux'"
-\   },
-\   'obsession': {
-\       'vundle': 'tpope/vim-obsession',
-\       "plug": "Plug 'tpope/vim-obsession'"
-\   },
-\   'gtags': {
-\       'vundle': 'aceofall/gtags.vim',
-\       "plug": "Plug 'aceofall/gtags.vim', { 'for': ['c', 'cpp'] }"
-\   },
-\   'localrc': {
-\       'vundle': 'thinca/vim-localrc',
-\       "plug": "Plug 'thinca/vim-localrc'"
-\   },
-\   'superman': {
-\       'vundle': 'jez/vim-superman',
-\       "plug": "Plug 'jez/vim-superman'"
-\   },
-\   'plug': {
-\   },
-\   'vimtex': {
-\       'vundle': 'lervag/vimtex',
-\       "plug": "Plug 'lervag/vimtex'"
-\   },
-\   'ack': {
-\       'vundle': 'mileszs/ack.vim',
-\       "plug": "Plug 'mileszs/ack.vim'",
-\       'pacman': ['vim-ack']
-\   },
-\}
-
-" global setting
+" 通用设置
 let g:mapleader = ';'
 
-" search
+" 搜索
 set hlsearch
 set incsearch
 set ignorecase
+set smartcase
+
 " tab
 set shiftwidth=4  ">> <<
 set shiftround
@@ -221,43 +24,43 @@ set softtabstop=4 "tab inserted
 set smarttab
 set expandtab "[C+V]+[Tab] for true tab
 
-" hl
-syntax on
+" 缩进
 set smartindent
 set autoindent
-set showmatch
 
-" line number
+" 高亮
+syntax on
+
+"set showmatch
+
+" 行号
 set number
 set relativenumber
-"autocmd InsertEnter * :set norelativenumber number
-"autocmd InsertLeave * :set nonumber relativenumber
 
-" mouse
+" 鼠标
 set mouse=a
 
-" dict
+" 词典
 "set keywordprg=sdcv
-set keywordprg=K "K is a custom wrapper of sdcv with colors
+set keywordprg=K "K是一个自定义程序
 
-" file encoding
+" vim编码
 set encoding=utf-8
 
+" 退格键
 set backspace=indent,eol,start
 
-" status line
 set wildmenu
-set showcmd "It seems that this option is available only by masual setting
-nmap <leader>sc :set showcmd<CR>
-set laststatus=2
-if !has_key(s:plugin_info, 'airline')
-    set ruler
-    set showmode
-    set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-    set shortmess=atI "status line short message for ...(use default)
-endif
 
-" fold
+set showcmd
+set laststatus=2
+" airline替代了状态行
+"set ruler
+"set showmode
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+"set shortmess=atI "status line short message for ...(use default)
+
+" 代码折叠
 set foldenable
 set foldmethod=manual
 
@@ -265,7 +68,22 @@ set foldmethod=manual
 "set cuc
 set scrolloff=3
 
-" keymap
+" 用gtags插件，不需要cscope
+"if has("cscope")
+    "set csprg=/bin/cscope
+    "set csto=0
+    "set cst
+    "set nocsverb
+    "add any database in current directory
+    "if filereadable('cscope.out')
+        "cs add cscope.out
+    "elseif $CSCOPE_DB != ''
+        "cs add $CSCOPE_DB
+    "endif
+    "set csverb
+"endif
+
+" 键绑定
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprevious<CR>
 nmap <leader>bd :bdelete<CR>
@@ -319,75 +137,52 @@ nmap <leader>gf :cs find f <C-R>=expand('<cfile>')<CR><CR>
 nmap <leader>gi :cs find i ^<C-R>=expand('<cfile>')<CR>$<CR>
 nmap <leader>gd :cs find d <C-R>=expand('<cword>')<CR><CR>
 
-if !has_key(s:plugin_info, 'gtags')
-    if has("cscope")
-        set csprg=/bin/cscope
-        set csto=0
-        set cst
-        set nocsverb
-        add any database in current directory
-        if filereadable('cscope.out')
-            cs add cscope.out
-        elseif $CSCOPE_DB != ""
-            cs add $CSCOPE_DB
-        endif
-        set csverb
-    endif
-endif
-
-function! s:get_manager(plug)
-    let l:plug_info=s:plugin_info[a:plug]
-    if has_key(l:plug_info, s:manager)
-        if s:manager_info[s:manager].method=='shell'
-            for pkg in l:plug_info[s:manager]
-                let cmd=substitute(s:manager_info[s:manager].template, '\<_package_\>', pkg, '')
-                call system(cmd)
-                if !v:shell_error
-                    break
-                endif
-            endfor
-            if !v:shell_error
-                return s:manager
-            endif
-        endif
-    endif
-    return s:vim_manager
-endfunction
-
-" [Vundle](plugin)
-" 插件管理插件
-" 插件设置应在此之后
-if s:vim_manager=='vundle'
-    set nocompatible              " be iMproved
-    filetype off                  " required!
-    if s:get_manager('vundle')=='vundle'
-        set rtp+=~/.vim/bundle/vundle/
-    endif
-    call vundle#rc()
-endif
-
 " [vim-plug](plugin)
 " 插件管理插件
-if s:vim_manager=='plug'
-    call plug#begin('~/.vim/plugged')
-endif
-
-" 让vundle/vim-plug管理未被系统包管理器管理的插件
-for plug in keys(s:plugin_info)
-    let mgr=s:get_manager(plug)
-    if s:manager_info[mgr].method=='vim' && has_key(s:plugin_info[plug], mgr)
-        let cmd=substitute(s:manager_info[mgr].template, '\<_package_\>', s:plugin_info[plug][mgr], '')
-        execute(cmd)
-    endif
-endfor
-
-if s:vim_manager=='vundle'
-    filetype plugin indent on     " required!
-elseif s:vim_manager=='plug'
-    call plug#end()
-endif
-
-" [Vundle]$
+call plug#begin('~/.vim/plugged')
+Plug 'vim-scripts/a.vim'
+Plug 'mbbill/fencview'
+Plug 'vim-scripts/The-NERD-tree'
+Plug 'asins/vimcdoc'
+Plug 'Valloric/YouCompleteMe'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tomasr/molokai'
+Plug 'kien/ctrlp.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-surround', { 'for': 'html' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/TaskList.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'kshenoy/vim-signature'
+Plug 'thinca/vim-quickrun'
+Plug 'terryma/vim-expand-region'
+Plug 'dyng/ctrlsf.vim'
+Plug 'sjl/gundo.vim'
+Plug 'szw/vim-ctrlspace'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'phildawes/racer', { 'for': 'rust' }
+Plug 'vim-scripts/fcitx.vim'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tpope/vim-obsession'
+Plug 'aceofall/gtags.vim', { 'for': ['c', 'cpp'] }
+Plug 'thinca/vim-localrc'
+Plug 'lervag/vimtex', { 'for': ['tex'] }
+Plug 'mileszs/ack.vim'
+Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
+Plug 'Shougo/unite.vim'
+"Plug 'Shougo/vimshell.vim'
+"Plug 'jez/vim-superman'
+call plug#end()
+" [vim-plug]$
 
 " [a.vim](plugin)(efficiency)(file)
 " 快速对应的.h和.c文件
@@ -402,12 +197,12 @@ nmap <leader>a :A<CR>
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-" close vim if the only window left open is a NERDTree
+" 在只剩下该插件窗口的情况下关闭vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 " [The-NERD-tree]$
 
 " [vimcdoc](doc)
-" set help document language
+" 帮助文档语言
 set helplang=cn
 " [vimcdoc]$
 
@@ -451,7 +246,7 @@ let g:indent_guides_auto_colors = 1
 " [molokai](colorscheme)
 " [solarized](colorscheme)
 " molokai: sublime 配色方案
-if &t_Co > 255 && has_key(s:plugin_info, 'molokai')
+if &t_Co > 255
 	colorscheme molokai
     autocmd VimEnter * :hi IndentGuidesOdd  guibg=grey10 ctermbg=233
     autocmd VimEnter * :hi IndentGuidesEven guibg=grey15 ctermbg=236
@@ -465,6 +260,16 @@ let g:ctrlp_map = '<leader>f'
 let g:ctrlp_match_window_reversed = 0
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 let g:ctrlp_open_multiple_files = 'v'
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 " [ctrlp]$
 
 " [vim-easymotion](plugin)(efficiency)
@@ -484,7 +289,7 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-let g:UltiSnipsSnippetsDir=["~/.vim/ultisnips"]
+let g:UltiSnipsSnippetsDir="~/.vim/ultisnips"
 " [ultisnips]$
 
 " [vim-multiple-cursors](plugin)(efficiency)
@@ -508,14 +313,17 @@ let g:syntastic_enable_balloons = 1
 nmap <leader>ss :SyntasticToggleMode<CR>
 " [syntastic]$
 
-"[vim-airline](plugin)(show)
+" [vim-airline](plugin)(show)
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified=1
 let g:airline_detect_iminsert=1
 let g:airline_detect_paste=1
 let g:airline_inactive_collapse=1
-"let g:airline_theme='murmur'
-"[vim-airline]$
+" [vim-airline]$
+
+" [vim-airline-theme](plugin){vim-airline}
+let g:airline_theme='durant'
+" [vim-airline-theme]$
 
 "[tagbar](plugin)
 nmap <leader>tb :TagbarToggle<CR>
@@ -573,7 +381,6 @@ set ttimeoutlen=10
 "[vim-tmux]$
 
 "[vim-obsession](plugin)
-" vim-airline support TODO
 "[vim-obsession]$
 
 "[gtags.vim](plugin)
