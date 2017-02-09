@@ -247,12 +247,12 @@ let g:indent_guides_auto_colors = 1
 " [solarized](colorscheme)
 " molokai: sublime 配色方案
 if &t_Co > 255
-	colorscheme molokai
+    colorscheme molokai
     autocmd VimEnter * :hi IndentGuidesOdd  guibg=grey10 ctermbg=233
     autocmd VimEnter * :hi IndentGuidesEven guibg=grey15 ctermbg=236
     let g:indent_guides_auto_colors = 0
 else
-	colorscheme default
+    colorscheme default
 end
 
 " [ctrlp](plugin)(file)
@@ -261,14 +261,14 @@ let g:ctrlp_match_window_reversed = 0
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 let g:ctrlp_open_multiple_files = 'v'
 if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+    " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-  " " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+    " " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
 endif
 " [ctrlp]$
 
@@ -289,8 +289,11 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-let g:UltiSnipsSnippetsDir="~/.vim/ultisnips"
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 " [ultisnips]$
+
+" [vim-snippets](plugin){ultisnips}
+" [vim-snippets]$
 
 " [vim-multiple-cursors](plugin)(efficiency)
 " [vim-multiple-cursors]$
