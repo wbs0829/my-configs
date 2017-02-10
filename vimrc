@@ -115,11 +115,11 @@ nmap <leader>/ :let @/=""<CR>
 nmap <leader>. :<UP><CR>
 nmap <leader>q <CTRL-w>z
 
-nmap <leader>sh :%!xxd<CR>
-nmap <leader>sH :%!xxd -r<CR>
+nmap <leader>Sh :%!xxd<CR>
+nmap <leader>SH :%!xxd -r<CR>
 
-nmap <leader>sb :set binary<CR>:set noeol<CR>
-nmap <leader>sB :set nobinary<CR>:set eol<CR>
+nmap <leader>Sb :set binary<CR>:set noeol<CR>
+nmap <leader>SB :set nobinary<CR>:set eol<CR>
 "paste mode
 set pastetoggle=<leader>sp
 
@@ -140,57 +140,63 @@ nmap <leader>gd :cs find d <C-R>=expand('<cword>')<CR><CR>
 " [vim-plug](plugin)
 " 插件管理插件
 call plug#begin('~/.vim/plugged')
-Plug 'vim-scripts/a.vim'
-Plug 'mbbill/fencview'
-Plug 'vim-scripts/The-NERD-tree'
-Plug 'asins/vimcdoc'
-Plug 'Valloric/YouCompleteMe'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'tomasr/molokai'
-Plug 'kien/ctrlp.vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'scrooloose/nerdcommenter'
-Plug 'Raimondi/delimitMate'
-Plug 'tpope/vim-surround', { 'for': 'html' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/syntastic'
-Plug 'vim-airline/vim-airline'
+" 主题
+Plug 'tomasr/molokai' " sublime color scheme
+" 通用
+Plug 'mbbill/fencview' " file encode
+Plug 'asins/vimcdoc' " vim Chinese documentations
+Plug 'kien/rainbow_parentheses.vim' " color parentheses
+Plug 'Raimondi/delimitMate' " auto complete parentheses
+Plug 'vim-scripts/The-NERD-tree' " file explorer
+Plug 'Lokaltog/vim-easymotion' " ehance cursor motion
+Plug 'vim-airline/vim-airline' " ehance status line
 Plug 'vim-airline/vim-airline-themes'
-Plug 'majutsushi/tagbar'
-Plug 'vim-scripts/TaskList.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'kshenoy/vim-signature'
-Plug 'thinca/vim-quickrun'
-Plug 'terryma/vim-expand-region'
-Plug 'dyng/ctrlsf.vim'
-Plug 'sjl/gundo.vim'
-Plug 'szw/vim-ctrlspace'
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'phildawes/racer', { 'for': 'rust' }
-Plug 'vim-scripts/fcitx.vim'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'tpope/vim-obsession'
-Plug 'aceofall/gtags.vim', { 'for': ['c', 'cpp'] }
-Plug 'thinca/vim-localrc'
-Plug 'lervag/vimtex', { 'for': ['tex'] }
-Plug 'mileszs/ack.vim'
-Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
-Plug 'Shougo/unite.vim'
-"Plug 'Shougo/vimshell.vim'
+Plug 'kshenoy/vim-signature' " ehance bookmark
+Plug 'sjl/gundo.vim' " ehance undolist
+Plug 'tpope/vim-obsession' " enhance mksession
+Plug 'mileszs/ack.vim' " ehance grep
+Plug 'kien/ctrlp.vim' " fuzzy search
+Plug 'Shougo/unite.vim' " an extensible interface for searching and displaying lists
+Plug 'szw/vim-ctrlspace' " 
+Plug 'scrooloose/nerdcommenter' " comment and uncomment
+Plug 'terryma/vim-multiple-cursors' " edit at multiple positions at the same time
+Plug 'terryma/vim-expand-region' " expand a visual selection region
+Plug 'vim-scripts/fcitx.vim' " auto switch fcitx state when leaving/re-entering insert mode
+Plug 'Shougo/vimproc.vim', { 'do' : 'make' } " asynchronous execution library
+"Plug 'Shougo/vimshell.vim' " a shell in vim
+" 编程通用
+Plug 'nathanaelkane/vim-indent-guides' " color indent 
+Plug 'Valloric/YouCompleteMe' " auto-complete
+Plug 'SirVer/ultisnips' " manage snippets
+Plug 'honza/vim-snippets' " some code snippet templates
+Plug 'scrooloose/syntastic' " syntax check
+Plug 'majutsushi/tagbar' " tag list
+Plug 'vim-scripts/TaskList.vim' " todo list
+Plug 'junegunn/vim-easy-align' " aligh codes
+Plug 'thinca/vim-quickrun' " execute codes
+Plug 'dyng/ctrlsf.vim' " display search results with context
+Plug 'thinca/vim-localrc' " load vim configuration at the local directory
+" C
+Plug 'vim-scripts/a.vim', { 'for': ['c', 'cpp'] } " switch source and header
+Plug 'aceofall/gtags.vim', { 'for': ['c', 'cpp'] } " gtags instead of cscope
+" web
+Plug 'tpope/vim-surround', { 'for': 'html' } " deal with pairs of surroundings like parentheses and html tags
+" rust
+Plug 'rust-lang/rust.vim', { 'for': 'rust' } " for rust
+" tmux
+Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' } " for tmux
+" tex
+Plug 'lervag/vimtex', { 'for': ['tex', 'bib', 'sty'] } " for tex
+" man
 "Plug 'jez/vim-superman'
 call plug#end()
 " [vim-plug]$
 
-" [a.vim](plugin)(efficiency)(file)
-" 快速对应的.h和.c文件
+" [a.vim]
 nmap <leader>a :A<CR>
 " [a.vim]$
 
 " [FencView](plugin)(file)
-" 文件编码设置
 " [FencView]$
 
 " [The-NERD-tree](plugin)(file)
@@ -260,19 +266,22 @@ let g:ctrlp_map = '<leader>f'
 let g:ctrlp_match_window_reversed = 0
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 let g:ctrlp_open_multiple_files = 'v'
+let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
 if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor
-
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
     " " ag is fast enough that CtrlP doesn't need to cache
     let g:ctrlp_use_caching = 0
 endif
 " [ctrlp]$
 
 " [vim-easymotion](plugin)(efficiency)
+nmap <Leader><C-f> <Plug>(easymotion-overwin-f)
+nmap <Leader><C-d> <Plug>(easymotion-overwin-f2)
+nmap <Leader><C-l> <Plug>(easymotion-overwin-line)
+nmap <Leader><C-w> <Plug>(easymotion-overwin-w)
 " [vim-easymotion]$
 
 " [nerdcommenter](plugin)(efficiency)
@@ -307,10 +316,8 @@ let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++1z '
-"set error or warning signs
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
-""whether to show balloons
 let g:syntastic_enable_balloons = 1
 
 nmap <leader>ss :SyntasticToggleMode<CR>
@@ -322,10 +329,22 @@ let g:airline_detect_modified=1
 let g:airline_detect_iminsert=1
 let g:airline_detect_paste=1
 let g:airline_inactive_collapse=1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffers_label = 'b'
+let g:airline#extensions#tabline#tabs_label = 't'
+
+let g:airline#extensions#obsession#enabled = 1
+let g:airline#extensions#obsession#indicator_text = '☯'
+
+let g:airline#extensions#ctrlspace#enabled = 1
+let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
+
+let g:airline#extensions#ycm#enabled = 1
 " [vim-airline]$
 
 " [vim-airline-theme](plugin){vim-airline}
-let g:airline_theme='durant'
+let g:airline_theme='ravenpower'
 " [vim-airline-theme]$
 
 "[tagbar](plugin)
@@ -356,7 +375,7 @@ let g:quickrun_config.cpp = {
 "[vim-expand-region]$
 
 "[ctrlsf](plugin)(efficiency)
-nmap <leader>sf :CtrlSFToggle
+nmap <leader>sf :CtrlSFToggle<CR>
 nmap <leader>F <Plug>CtrlSFPrompt
 vmap <leader>F <Plug>CtrlSFVwordExec
 "[ctrlsf]$
@@ -368,13 +387,10 @@ nmap <leader>su :GundoToggle<CR>
 "[vim-ctrlspace](plugin)
 nmap <leader><space> :CtrlSpace<CR>
 set hidden
+if executable("ag")
+    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
 "[vim-ctrlspace]$
-
-"[racer](plugin)(efficiency)(autocomplete)
-set hidden
-let g:racer_cmd = "~/.vim/bundle/racer/target/release/racer"
-let $RUST_SRC_PATH="~/code/rust/rust/src"
-"[racer]$
 
 "[fcitx.vim](plugin)
 set ttimeoutlen=10
@@ -384,6 +400,8 @@ set ttimeoutlen=10
 "[vim-tmux]$
 
 "[vim-obsession](plugin)
+nmap <leader>So :Obsession<CR>
+nmap <leader>SO :Obsession!<CR>
 "[vim-obsession]$
 
 "[gtags.vim](plugin)
@@ -394,11 +412,9 @@ let CtagsCscope_Auto_Map = 1
 let GtagsCscope_Quiet = 1
 "[gtags.vim]$
 
-let s:specific_config = $PWD . '/.specific.vim'
-if filereadable(s:specific_config)
-    exec "source ". s:specific_config
-endif
-
 "[vim-ack]{plugin}
 let g:ackprg = 'ag --vimgrep'
 "[vim-ack]$
+
+" [vim-localrc](plugin)(project)
+" [vim-localrc]$
