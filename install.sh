@@ -219,7 +219,7 @@ if [ "x$ENABLE_ZSH" = "xy" ]; then
     fi
     install_zsh_config
     if [ "x$ENABLE_OM_ZSH" = "xy" ]; then
-        if [ ! -s $OM_ZSH ]; then
+        if [ ! -s $OM_ZSH_PATH ]; then
             install_om_zsh
         fi
         install_om_zsh_custom
