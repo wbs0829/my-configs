@@ -116,6 +116,8 @@ if [ $# -eq 0 ]; then
             get_answer "$TMUX_CONFIG_PATH exists. Do you backup it?[Yn]" && \
                 backup_tmux_config
         install_tmux_config
+        get_answer "Do you install tpm(tmux plugin manager)?[Yn]" && \
+            install_tmux_plugin_manager
     fi
 
     if get_answer "Do you install vim config?[Yn]"; then
@@ -123,13 +125,14 @@ if [ $# -eq 0 ]; then
             get_answer "$VIM_CONFIG_PATH exists. Do you backup it?[Yn]" && \
                 backup_vim_config
         install_vim_config
+        get_answer "Do you install vim-plug(vim plugin manager)?[Yn]" && \
+            install_vim_plugin_manager
     fi
 
     if get_answer "Do you install zsh config?[Yn]"; then
         [ -f $ZSH_CONFIG_PATH ] && \
             get_answer "$ZSH_CONFIG_PATH exists. Do you backup it?[Yn]" && \
                 backup_zsh_config
-        install_zsh_config
         if [ ! -s $OM_ZSH_PATH ]; then
             get_answer "Do you install on-my-zsh?[Yn]" && \
                 install_om_zsh && install_om_zsh_custom
@@ -137,6 +140,8 @@ if [ $# -eq 0 ]; then
             get_answer "Do you install custom on-my-zsh config?[Yn]" && \
                 install_om_zsh_custom
         fi
+        # this must be after installing oh-my-zsh, because oh-my-zsh backups config file
+        install_zsh_config
     fi
 
     if get_answer "Do you install grc config?[Yn]"; then
@@ -193,7 +198,7 @@ if [ "x$ENABLE_TMUX" = "xy" ]; then
         backup_tmux_config
     fi
     install_tmux_config
-    if [ "x$ENABLE_TMUX_PLUGIN_MANAGER" = "xy" ] && [ ! -d TMUX_PM_PATH ]; then
+    if [ "x$ENABLE_TMUX_PLUGIN_MANAGER" = "xy" ] && [ ! -d $TMUX_PM_PATH ]; then
         install_tmux_plugin_manager
     fi
 fi
@@ -203,7 +208,7 @@ if [ "x$ENABLE_VIM" = "xy" ]; then
         backup_vim_config
     fi
     install_vim_config
-    if [ "x$ENABLE_VIM_PLUGIN_MANAGER" = "xy" ] && [ ! -f VIM_PM_PATH ]; then
+    if [ "x$ENABLE_VIM_PLUGIN_MANAGER" = "xy" ] && [ ! -f $VIM_PM_PATH ]; then
         install_vim_plugin_manager
     fi
 fi
