@@ -67,6 +67,8 @@ function backup_zsh_config() {
 }
 
 function install_om_zsh() {
+    echo "After oh-my-zsh is installed, zsh will run. You should exit zsh first to continue installation."
+    export ZSH="$OM_ZSH_PATH"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
@@ -217,13 +219,14 @@ if [ "x$ENABLE_ZSH" = "xy" ]; then
     if [ -f $ZSH_CONFIG_PATH ]; then
         backup_zsh_config
     fi
-    install_zsh_config
     if [ "x$ENABLE_OM_ZSH" = "xy" ]; then
         if [ ! -s $OM_ZSH_PATH ]; then
             install_om_zsh
         fi
         install_om_zsh_custom
     fi
+    # this must be after installing oh-my-zsh, because oh-my-zsh backups config file
+    install_zsh_config
 fi
 
 if [ "x$ENABLE_YCM" = "xy" ]; then
