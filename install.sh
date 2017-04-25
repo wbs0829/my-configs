@@ -77,7 +77,7 @@ function install_om_zsh_custom() {
 
 function install_grc_config() {
     mkdir -p GRC_CONFIG_PATH
-    ln -s $filepath/grc/conf.sdcv $GRC_PATH/conf.sdcv
+    ln -s $filepath/grc/conf.sdcv $GRC_CONFIG_PATH/conf.sdcv
 }
 
 function install_ycm_config() {
