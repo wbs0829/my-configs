@@ -46,7 +46,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git svn vi-mode autojump tmux pip cp)
-plugins=(git svn autojump tmux pip cp systemd)
+plugins=(git svn autojump tmux pip cp systemd jump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,10 +112,12 @@ alias cl='clear'
 # function
 function enableproxy()
 {
-    if [ x = x"$PROXY_PORT" ]; then
-        export http_proxy=http://127.0.0.1:1080/
+    if [ $# -gt 0 ]; then
+        export http_proxy=http://127.0.0.1:$1
+    elif [ x = x"$PROXY_PORT" ]; then
+        export http_proxy=http://127.0.0.1:1080
     else
-        export http_proxy=http://127.0.0.1:$PROXY_PORT/
+        export http_proxy=http://127.0.0.1:$PROXY_PORT
     fi
 	export https_proxy=$http_proxy
 	export HTTP_PROXY=$http_proxy
