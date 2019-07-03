@@ -1,4 +1,4 @@
-local PROMPT_L1='${_date_time}$(_user_host)$(_vi_status)${_current_dir}$(git_prompt_info)$(_git_time_since_commit)$(git_prompt_status)$(git_prompt_ahead)$(_ruby_version)'
+local PROMPT_L1='${_date_time}$(_user_host)$(_vi_status)${_current_dir}$(git_prompt_info)$(git_prompt_status)$(git_prompt_ahead)$(_ruby_version)'
 #local PROMPT_L2='${_return_code}▶ '
 local PROMPT_L2='${_return_code2}${_color_prompt} '
 
