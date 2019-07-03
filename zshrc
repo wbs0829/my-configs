@@ -46,14 +46,11 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git svn vi-mode autojump tmux pip cp)
-plugins=(git svn autojump tmux pip cp systemd jump)
+plugins=(git-prompt autojump tmux pip cp systemd jump)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-export PATH="$PATH:/usr/bin/core_perl"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
 #if [[ -n $SSH_CONNECTION ]]; then
@@ -73,11 +70,6 @@ export EDITOR='vim'
 # autoload -U zsh-mime-setup
 # zsh-mime-setup
 # alias -s _postfix=_program
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-PATH=$PATH:$HOME/code/shell
-PATH=$PATH:$HOME/code/python
 
 # alias
 alias enablegitproxy='git config --global core.gitProxy gitproxy.sh'
@@ -133,8 +125,8 @@ function disableproxy()
 }
 
 # plugin
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/doc/pkgfile/command-not-found.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/doc/pkgfile/command-not-found.zsh
 
 #for cheat
 export CHEATCOLORS=true
@@ -150,8 +142,10 @@ vman() {
 compdef vman="man"
 
 # GREP_OPTIONS is deprecated
-alias grep="/usr/bin/grep $GREP_OPTIONS"
-unset GREP_OPTIONS
+if [[ -n "$GREP_OPTIONS" ]]; then
+    alias grep="`which grep` $GREP_OPTIONS"
+    unset GREP_OPTIONS
+fi
 
 # change default behaviour of vi-mode plugin
 function vi_mode_prompt_info() {
