@@ -11,7 +11,7 @@ OM_ZSH_PATH=~/.oh-my-zsh
 GRC_CONFIG_PATH=~/.grc
 YCM_CONFIG_PATH=~/.ycm_extra_conf.py
 
-function show_help() {
+show_help() {
     echo "$0 [-atTvVzZgyh]
     -a install all configs and download plugin managers
     -t install tmux config
@@ -25,7 +25,7 @@ function show_help() {
     -h show help"
 }
 
-function backup() {
+backup() {
     if [ $# -lt 1 ]; then
         mv "$1" "$2" && echo "move $1 to $2"
     else
@@ -33,64 +33,64 @@ function backup() {
     fi
 }
 
-function install_tmux_config() {
+install_tmux_config() {
     echo "source $filepath/tmux.conf" > $TMUX_CONFIG_PATH
 }
 
-function backup_tmux_config() {
+backup_tmux_config() {
     backup $TMUX_CONFIG_PATH
 }
 
-function install_tmux_plugin_manager() {
+install_tmux_plugin_manager() {
     git clone https://github.com/tmux-plugins/tpm $TMUX_PM_PATH
 }
 
-function install_vim_config() {
+install_vim_config() {
     echo "source $filepath/vimrc" > $VIM_CONFIG_PATH
 }
 
-function backup_vim_config() {
+backup_vim_config() {
     backup $VIM_CONFIG_PATH
 }
 
-function install_vim_plugin_manager() {
+install_vim_plugin_manager() {
     curl -fLo $VIM_PM_PATH --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
-function install_zsh_config() {
+install_zsh_config() {
     echo "source $filepath/zshrc" > $ZSH_CONFIG_PATH
 }
 
-function backup_zsh_config() {
+backup_zsh_config() {
     backup $ZSH_CONFIG_PATH
 }
 
-function install_om_zsh() {
+install_om_zsh() {
     echo "After oh-my-zsh is installed, zsh will run. You should exit zsh first to continue installation."
     export ZSH="$OM_ZSH_PATH"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
-function install_om_zsh_custom() {
+install_om_zsh_custom() {
     mkdir -p $OM_ZSH_PATH/themes
     ln -s $filepath/oh-my-zsh/themes/amber.zsh-theme $OM_ZSH_PATH/themes/amber.zsh-theme
 }
 
-function install_grc_config() {
+install_grc_config() {
     mkdir -p $GRC_CONFIG_PATH
     ln -s $filepath/grc/conf.sdcv $GRC_CONFIG_PATH/conf.sdcv
 }
 
-function install_ycm_config() {
+install_ycm_config() {
     ln -s $filepath/ycm_extra_conf.py $YCM_CONFIG_PATH
 }
 
-function backup_ycm_config() {
+backup_ycm_config() {
     backup $YCM_CONFIG_PATH
 }
 
-function get_answer() {
+get_answer() {
     if [ $# -gt 2 ]; then
         local default_choice="$2"
     else
